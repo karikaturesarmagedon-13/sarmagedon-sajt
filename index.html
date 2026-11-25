@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karikature Sarmagedon — Budi unikatan/na. Ili pokloni unikat.</title>
+<meta name="description" content="Karikature Sarmagedon — ručno oslikane custom patike i karikature po fotografiji.">
+<link rel="icon" type="image/png" href="slike/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#09070d;
+    --bg2:#110d18;
+    --card:#16111f;
+    --line:#2a2138;
+    --text:#ece8f3;
+    --muted:#9c93ad;
+    --purple:#8b5cf6;
+    --purple2:#c084fc;
+    --grad:linear-gradient(135deg,#7c3aed 0%,#c084fc 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-weight:400}
+  h1,h2,h3,.logo{font-family:'Syne',sans-serif;font-weight:700;line-height:1.1}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{display:inline-block;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--purple2);font-weight:600;margin-bottom:16px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* NAV */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(9,7,13,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;position:relative}  .logo{display:flex;align-items:center}
+  /* logo je crno na belom — invert + screen ga pretvara u belo na tamnoj pozadini */
+  .logo img{height:84px;width:auto;margin:-4px 0 -4px -10px;filter:invert(1);mix-blend-mode:screen}
+  footer .logo img{height:110px}
+  nav ul{display:flex;gap:26px;list-style:none;align-items:center}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .cart-btn{position:relative;width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:rgba(22,17,31,.7);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:border-color .2s,background .2s;margin-left:8px}
+  .cart-btn:hover{border-color:var(--purple);background:rgba(139,92,246,.12)}
+  .cart-btn svg{width:22px;height:22px}
+  .cart-badge{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:var(--grad);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;border:2px solid var(--bg)}
+  .cart-badge[hidden]{display:none}
+  .cart-btn.bump{animation:bump .45s}
+  @keyframes bump{40%{transform:scale(1.18)}}
+  nav ul a{font-size:.9rem;color:var(--muted);transition:color .2s}
+  nav ul a:hover{color:var(--text)}
+  nav ul a.cta{color:#fff;padding:10px 20px;border-radius:999px;background:var(--grad)}
+  .burger{display:none;width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:rgba(22,17,31,.7);cursor:pointer;position:relative;transition:border-color .2s,background .2s}
+  .burger:hover,.burger.open{border-color:var(--purple);background:rgba(139,92,246,.12)}
+  .burger span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:var(--text);transition:transform .3s,opacity .2s,top .3s}
+  .burger span:nth-child(1){top:16px}
+  .burger span:nth-child(2){top:22px}
+  .burger span:nth-child(3){top:28px}
+  .burger.open span:nth-child(1){top:22px;transform:rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){top:22px;transform:rotate(-45deg)}
+
+  .btn{display:inline-block;padding:15px 32px;border-radius:999px;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:0;font-family:inherit}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(139,92,246,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(139,92,246,.9)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);background:transparent}
+  .btn-ghost:hover{border-color:var(--purple);background:rgba(139,92,246,.08)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+  .hero::before{content:"";position:absolute;width:780px;height:780px;right:-220px;top:-180px;background:radial-gradient(circle,rgba(124,58,237,.35),transparent 65%);pointer-events:none}
+  .hero::after{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-200px;background:radial-gradient(circle,rgba(192,132,252,.15),transparent 65%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;position:relative;z-index:1}
+  .hero h1{font-size:clamp(2.5rem,5vw,4.2rem);font-weight:800;margin-bottom:26px;letter-spacing:-.02em}
+  .hero p{font-size:1.12rem;color:var(--muted);max-width:520px;margin-bottom:38px;font-weight:300}
+  /* Naziv: SARMAGEDON veliko, "karikature" tik ispod, iste širine */
+  .hero h1.brand{display:inline-flex;flex-direction:column;margin-bottom:26px;line-height:1;letter-spacing:0}
+  .hero .wrap{width:100%;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  .hero .wrap > div:first-child{container-type:inline-size}
+  .brand-main{font-size:min(7.7cqi,4.6rem);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:.9}
+  .brand-sub{display:block;font-family:'Syne';font-weight:600;font-size:clamp(.72rem,2.3cqi,1.4rem);text-transform:uppercase;color:var(--purple2);text-align:justify;text-align-last:justify;margin-top:8px;padding:0 .15em}
+  .hero p.slogan{font-family:'Syne';font-weight:700;font-size:clamp(1.1rem,2.6vw,1.9rem);color:var(--text);margin-bottom:16px;line-height:1.2}
+  .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .stats{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-bottom:22px}
+  .stats li{font-size:.78rem;color:var(--muted);border:1px solid var(--line);background:rgba(139,92,246,.08);padding:6px 13px;border-radius:999px;white-space:nowrap}
+  .stats b{font-family:'Syne';color:var(--purple2);font-weight:700}
+  .hero-img{aspect-ratio:4/5;border-radius:24px;border:1px solid var(--line);background:linear-gradient(160deg,#1c1428,#0d0a13);position:relative;overflow:hidden;display:grid;place-items:center}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .hero-img .badge{position:absolute;left:20px;bottom:20px;background:rgba(9,7,13,.8);backdrop-filter:blur(8px);border:1px solid var(--line);padding:12px 18px;border-radius:14px;font-size:.85rem}
+  .hero-img .badge b{color:var(--purple2)}
+
+  /* PLACEHOLDER za slike */
+  .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.85rem;text-align:center;padding:20px}
+  .ph svg{width:44px;height:44px;stroke:var(--purple);opacity:.7}
+
+  /* SECTIONS */
+  section{padding:120px 0;scroll-margin-top:0}
+  .head{max-width:640px;margin-bottom:60px}
+  .head.center{text-align:center;margin-inline:auto}
+  .head h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px;letter-spacing:-.01em}
+  .head p{color:var(--muted);font-weight:300;font-size:1.05rem}
+
+  /* USLUGE */
+  #usluge{background:var(--bg2);border-block:1px solid var(--line)}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .service{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:38px 32px;transition:border-color .3s,transform .3s}
+  .service:hover{border-color:var(--purple);transform:translateY(-4px)}
+  .service .num{font-family:'Syne';font-size:.85rem;color:var(--purple2);margin-bottom:26px;display:block}
+  .service h3{font-size:1.5rem;margin-bottom:12px}
+  .service p{color:var(--muted);font-size:.95rem;font-weight:300}
+  .service .more{display:inline-block;margin-top:20px;font-size:.9rem;font-weight:600;color:var(--purple2)}
+  .service .more:hover{color:var(--text)}
+  .service.main{border-color:var(--purple)}
+  .service.featured-wide{grid-column:span 2;background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(192,132,252,.06)),var(--card);border-color:var(--purple)}
+  .service.featured-wide h3{font-size:2rem}
+
+  /* PAKETI PATIKA */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+  .tier:hover{transform:translateY(-6px);border-color:var(--purple)}
+  .tier.featured{border-color:var(--purple);box-shadow:0 30px 80px -30px rgba(139,92,246,.55)}
+  .tier .img{aspect-ratio:4/3;background:linear-gradient(160deg,#1c1428,#0d0a13);border-bottom:1px solid var(--line);position:relative}
+  .tier .img img{width:100%;height:100%;object-fit:cover}
+  .tier .img .main{width:100%;height:100%;cursor:zoom-in}
+  .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px;border-bottom:1px solid var(--line);background:var(--bg)}
+  .thumbs.five{grid-template-columns:repeat(5,1fr);gap:6px}
+  .thumbs.six{grid-template-columns:repeat(6,1fr);gap:6px}
+  .thumbs.ten{grid-template-columns:repeat(6,1fr);gap:6px}
+  .thumbs .t{aspect-ratio:1/1;border-radius:8px;overflow:hidden;border:2px solid var(--line);cursor:pointer;background:linear-gradient(160deg,#1c1428,#0d0a13);transition:border-color .2s}
+  .thumbs .t:hover{border-color:var(--purple2)}
+  .thumbs .t.active{border-color:var(--purple)}
+  .thumbs .t img{width:100%;height:100%;object-fit:cover}
+  .thumbs .ph{padding:0;font-size:.75rem}
+  .tier .level{position:absolute;top:16px;left:16px;font-family:'Syne';font-weight:800;font-size:.75rem;letter-spacing:.2em;padding:7px 14px;border-radius:999px;background:rgba(9,7,13,.85);border:1px solid var(--line)}
+  .tier.featured .level{background:var(--grad);border:0}
+  .tier .body{padding:30px 30px 34px;display:flex;flex-direction:column;flex:1}
+  .tier h3{font-size:1.7rem;margin-bottom:8px}
+  .tier .desc{color:var(--muted);font-size:.93rem;font-weight:300;margin-bottom:22px}
+  .tier ul{list-style:none;margin-bottom:28px;flex:1}
+  .tier li{font-size:.92rem;padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
+  .tier li::before{content:"✦";color:var(--purple2);font-size:.8rem}
+  .price{padding-top:22px;border-top:1px solid var(--line);margin-bottom:22px}
+  .price small{display:block;font-size:.75rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+  .price strong{font-family:'Syne';font-size:2.3rem;font-weight:800}
+  .price span{color:var(--muted);font-size:1rem;margin-left:6px}
+  .tier .btn{text-align:center}
+  .note{text-align:center;color:var(--muted);font-size:.88rem;margin-top:34px}
+
+  /* KARIKATURE FORMATI */
+  #karikature{border-top:1px solid var(--line)}
+  .formats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .fmt{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+  .fmt:hover{transform:translateY(-6px);border-color:var(--purple)}
+  .paper-box{height:220px;display:flex;align-items:flex-end;justify-content:center;padding:24px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 50% 100%,rgba(124,58,237,.25),transparent 70%)}
+  .paper{aspect-ratio:1/1.414;max-height:100%;border:2px solid var(--purple2);border-radius:4px;background:rgba(192,132,252,.08);display:grid;place-items:center;box-shadow:0 10px 30px -10px rgba(139,92,246,.6)}
+  .paper span{font-family:'Syne';font-weight:800;font-size:.9rem;color:var(--purple2)}
+  .fmt .body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
+  .fmt h3{font-size:2rem;margin-bottom:4px}
+  .fmt .dim{color:var(--text);font-size:.95rem;margin-bottom:6px}
+  .fmt-info{list-style:none;flex:1;margin:10px 0 18px}
+  .fmt-info li{font-size:.88rem;color:var(--muted);padding:6px 0;display:flex;gap:8px;align-items:center}
+  .fmt-info li::before{content:"✦";color:var(--purple2);font-size:.75rem}
+  .fmt-info li.yes{color:var(--text)}
+  .fmt-info li.yes::before{content:"✓";color:#4ade80;font-weight:700}
+  .fmt-info li.no::before{content:"–";color:var(--muted)}
+
+  /* CELA GALERIJA (prozor) */
+  .fg{position:fixed;inset:0;z-index:95;background:var(--bg);display:none;flex-direction:column}
+  .fg.open{display:flex;animation:fgIn .3s ease}
+  @keyframes fgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .fg-head{border-bottom:1px solid var(--line);background:rgba(9,7,13,.9);backdrop-filter:blur(14px)}
+  .fg-head .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:18px;padding-bottom:14px}
+  .fg-head h2{font-size:1.8rem}
+  .fg-head h2 small{display:block;font-family:'Inter';font-weight:400;font-size:.8rem;color:var(--muted);margin-top:4px}
+  .fg-head .filters{padding-bottom:16px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .fg-head .filters button{white-space:nowrap}
+  .fg-body{flex:1;overflow-y:auto;padding:28px 0 60px}
+  .fg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .fg-item{aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#1c1428,#0d0a13);position:relative;cursor:pointer}
+  .fg-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .fg-item:hover img{transform:scale(1.05)}
+  .fg-item .tag{position:absolute;left:10px;bottom:10px;font-size:.72rem;font-weight:600;letter-spacing:.05em;padding:5px 10px;border-radius:999px;background:rgba(9,7,13,.85);border:1px solid var(--line)}
+  .fg-item.hide{display:none}
+  @media (max-width:540px){.fg-grid{grid-template-columns:1fr 1fr;gap:10px}.fg-head h2{font-size:1.4rem}}
+
+  /* PROZOR ZA PORUDŽBINU */
+  .om{position:fixed;inset:0;z-index:120;background:rgba(5,3,8,.82);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px}
+  .om.open{display:flex}
+  .om-box{width:100%;max-width:760px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 120px -30px rgba(124,58,237,.6);position:relative}
+  .om-head{padding:26px 30px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .om-head h3{font-size:1.5rem}
+  .om-close{background:none;border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer}
+  .om-close:hover{border-color:var(--purple)}
+  .om form{background:none;border:0;border-radius:0;padding:10px 30px 30px}
+  .om h4{font-family:'Syne';font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple2);margin:24px 0 12px}
+  .fmt-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .fmt-pick label{margin:0;cursor:pointer}
+  .fmt-pick input{display:none}
+  .fmt-pick .opt{border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;background:var(--bg);transition:.2s;text-transform:none;letter-spacing:0}
+  .fmt-pick .opt b{display:block;font-family:'Syne';font-size:1.4rem;color:var(--text)}
+  .fmt-pick .opt span{display:block;font-size:.78rem;color:var(--muted)}
+  .fmt-pick .opt em{display:block;font-style:normal;font-size:.9rem;color:var(--text);margin-top:6px;font-weight:600}
+  .fmt-pick input:checked + .opt{border-color:var(--purple);background:rgba(139,92,246,.14);box-shadow:0 0 0 1px var(--purple)}
+  .drop{border:2px dashed var(--line);border-radius:16px;padding:28px;text-align:center;cursor:pointer;transition:.2s;background:var(--bg)}
+  .drop:hover,.drop.over{border-color:var(--purple);background:rgba(139,92,246,.08)}
+  .drop svg{width:38px;height:38px;stroke:var(--purple2);margin-bottom:8px}
+  .drop p{font-size:.92rem}
+  .drop small{color:var(--muted);font-size:.8rem}
+  .previews{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:12px}
+  .previews .pv{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+  .previews img{width:100%;height:100%;object-fit:cover}
+  .previews button{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(9,7,13,.85);color:#fff;cursor:pointer;font-size:.9rem;line-height:1}
+  .om-sum{margin-top:26px;padding:20px;border-radius:16px;background:var(--bg);border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .om-sum small{display:block;color:var(--muted);font-size:.8rem}
+  .om-sum strong{font-family:'Syne';font-size:1.8rem}
+  .om-sum .btn{width:auto;margin:0}
+  .om-err{color:#f87171;font-size:.85rem;margin-top:8px;display:none}
+  .om-done{padding:50px 30px;text-align:center;display:none}
+  .om-done .ok{width:70px;height:70px;border-radius:50%;background:var(--grad);display:grid;place-items:center;margin:0 auto 20px;font-size:2rem}
+  .om-done h3{font-size:1.7rem;margin-bottom:10px}
+  .om-done p{color:var(--muted);max-width:440px;margin:0 auto 24px}
+  .fmt-pick{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  button.more{background:none;border:0;padding:0;font-family:inherit;cursor:pointer}
+  #im-opcije-wrap h4:first-child,#im-form > div:first-child h4{margin-top:14px}
+
+  /* KORPA */
+  .cart-ov{position:fixed;inset:0;z-index:110;background:rgba(5,3,8,.7);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+  .cart-ov.open{opacity:1;visibility:visible}
+  .cart{position:fixed;top:0;right:0;bottom:0;z-index:111;width:min(440px,100%);background:var(--card);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:-30px 0 80px -20px rgba(0,0,0,.8)}
+  .cart.open{transform:none}
+  .cart [hidden]{display:none !important}
+  .cart-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+  .cart-head h3{font-size:1.4rem}
+  .cart-head h3 span{font-family:'Inter';font-weight:400;font-size:.9rem;color:var(--muted);margin-left:4px}
+  .cart-steps{display:flex;gap:8px;padding:12px 24px;border-bottom:1px solid var(--line)}
+  .cart-steps span{flex:1;text-align:center;font-size:.75rem;padding:6px 4px;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:.2s}
+  .cart-steps span.on{border-color:var(--purple);color:var(--text);background:rgba(139,92,246,.14)}
+  .cart-body{flex:1;overflow-y:auto;padding:6px 24px 20px}
+  .ci{display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .ci-img{width:64px;height:64px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#1c1428,#0d0a13);display:grid;place-items:center}
+  .ci-img img{width:100%;height:100%;object-fit:cover}
+  .ci-img svg{width:24px;height:24px;stroke:var(--purple)}
+  .ci b{display:block;font-size:.98rem;margin-bottom:2px}
+  .ci small{display:block;font-size:.8rem;color:var(--muted);line-height:1.5}
+  .ci small.opis{font-style:italic;margin-top:2px}
+  .ci small.warn{color:#fbbf24;margin-top:4px}
+  .ci-price{font-weight:600;font-size:.9rem;white-space:nowrap;text-align:right}
+  .ci-actions{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+  .qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+  .qty button{width:30px;height:28px;background:none;border:0;color:var(--text);cursor:pointer;font-size:1rem}
+  .qty button:hover{color:var(--purple2)}
+  .qty span{min-width:18px;text-align:center;font-size:.85rem}
+  .lnk{background:none;border:0;padding:0;color:var(--muted);font:inherit;font-size:.8rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .lnk:hover{color:var(--purple2)}
+  .cart-empty{text-align:center;padding:50px 6px;color:var(--muted)}
+  .cart-empty svg{width:56px;height:56px;stroke:var(--purple);opacity:.6;margin-bottom:14px}
+  .cart-empty h4{font-family:'Syne';font-size:1.2rem;color:var(--text);margin-bottom:6px}
+  .cart-empty .btns{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+  .cart form{background:none;border:0;border-radius:0;padding:0}
+  .cart form h4{font-family:'Syne';font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple2);margin:22px 0 4px}
+  .ship{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .ship label{margin:0;cursor:pointer;text-transform:none;letter-spacing:0}
+  .ship input{display:none}
+  .ship .opt{border:1px solid var(--line);border-radius:12px;padding:12px 8px;background:var(--bg);color:var(--text);font-size:.88rem;text-align:center;transition:.2s}
+  .ship input:checked + .opt{border-color:var(--purple);background:rgba(139,92,246,.14)}
+  .cart-foot{padding:18px 24px 22px;border-top:1px solid var(--line);background:var(--bg2)}
+  .tot{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;padding:3px 0}
+  .tot strong{font-family:'Syne';font-size:1.2rem}
+  .cart-foot .hint{font-size:.75rem;color:var(--muted);margin:8px 0 14px}
+  .cart-foot .btn{width:100%;text-align:center}
+  .cart-foot .btn + .btn{margin-top:10px}
+  .cart .om-done{display:block;padding:50px 0 20px}
+  .order-no{display:inline-block;font-family:'Syne';font-weight:700;letter-spacing:.05em;padding:8px 16px;border-radius:999px;border:1px solid var(--purple);background:rgba(139,92,246,.12);margin-bottom:16px}
+  @media (max-width:600px){.fmt-pick{grid-template-columns:1fr 1fr}.om form,.om-head{padding-left:20px;padding-right:20px}}
+  .fmt .price strong{font-size:2rem}
+  .fmt .btn{text-align:center}
+
+  /* GALERIJA */
+  #galerija{background:var(--bg2);border-block:1px solid var(--line)}
+  .gal-top{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:44px}
+  .gal-top .head{margin-bottom:0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:999px;font:inherit;font-size:.88rem;cursor:pointer;transition:.2s}
+  .filters button:hover{color:var(--text);border-color:var(--purple)}
+  .filters button.active{background:var(--grad);color:#fff;border-color:transparent}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:260px;gap:16px}
+  .g{border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#1c1428,#0d0a13);border:1px solid var(--line);position:relative;cursor:pointer}
+  .g.tall{grid-row:span 2}
+  .g.wide{grid-column:span 2}
+  .g img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .g:hover img{transform:scale(1.05)}
+  .g .cap{position:absolute;inset:auto 0 0 0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(9,7,13,.9));font-size:.85rem;opacity:0;transition:opacity .3s}
+  .g:hover .cap{opacity:1}
+  .g.hide{display:none}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;background:rgba(5,3,8,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:40px}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:86vh;border-radius:12px}
+  .lb button{position:absolute;top:24px;right:28px;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer}
+
+  /* PROCES */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .step{padding:34px 28px 0 0}
+  .step b{font-family:'Syne';font-size:1.35rem;font-weight:800;display:inline-block;margin-bottom:14px}
+  .step h3{font-size:1.15rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.92rem;font-weight:300}
+
+  /* KONTAKT */
+  #kontakt{background:var(--bg2);border-top:1px solid var(--line)}
+  #utisci{border-top:1px solid var(--line)}
+  .reviews-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
+  .reviews{display:grid;gap:18px}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 28px;position:relative;transition:border-color .3s}
+  .review:hover{border-color:var(--purple)}
+  .review::before{content:"“";position:absolute;right:24px;top:6px;font-family:'Syne';font-size:4.5rem;line-height:1;color:var(--purple);opacity:.25}
+  .review .stars{color:#facc15;letter-spacing:3px;font-size:.95rem;margin-bottom:12px}
+  .review p{color:var(--text);font-weight:300;font-size:.98rem;margin-bottom:18px;opacity:.9}
+  .review .who{display:flex;align-items:center;gap:12px}
+  .review .av{width:40px;height:40px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-family:'Syne';font-weight:700;color:#fff;flex:none}
+  .review .who b{display:block;font-size:.95rem;font-weight:600}
+  .review .who small{color:var(--purple2);font-size:.8rem}
+  .review-form{position:sticky;top:110px}
+  .review-form h3{font-size:1.4rem;margin-bottom:6px}
+  .review-form .sub{color:var(--muted);font-size:.9rem;font-weight:300}
+  .rate{display:inline-flex;flex-direction:row-reverse;gap:4px}
+  .rate input{position:absolute;opacity:0;pointer-events:none}
+  .rate label{margin:0;font-size:1.9rem;line-height:1;color:var(--line);cursor:pointer;transition:color .15s,transform .15s;letter-spacing:0}
+  .rate label:hover{transform:scale(1.12)}
+  .rate input:checked ~ label,.rate label:hover,.rate label:hover ~ label{color:#facc15}
+  .rate input:focus-visible + label{outline:2px solid var(--purple);outline-offset:2px;border-radius:4px}
+  .rv-ok{margin-top:14px;color:#4ade80;font-size:.9rem;text-align:center}
+  @media (max-width:960px){.reviews-wrap{grid-template-columns:1fr}.review-form{position:static}}
+  .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}
+  .apps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;max-width:520px}
+  .app{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);transition:color .2s}
+  .app .ico{width:100%;aspect-ratio:1;max-width:68px;display:grid;place-items:center;border-radius:18px;background:var(--card);border:1px solid var(--line);color:var(--text);transition:transform .2s,background .25s,border-color .25s,box-shadow .25s}
+  .app svg{width:46%;height:46%}
+  .app small{font-size:.72rem;white-space:nowrap}
+  .app:hover{color:var(--text)}
+  .app:hover .ico{transform:translateY(-4px);border-color:transparent;color:#fff}
+  .app.ig:hover .ico{background:linear-gradient(45deg,#f9a03f,#e1306c 50%,#833ab4);box-shadow:0 10px 24px -10px #e1306c}
+  .app.fb:hover .ico{background:#1877f2;box-shadow:0 10px 24px -10px #1877f2}
+  .app.vb:hover .ico{background:#7360f2;box-shadow:0 10px 24px -10px #7360f2}
+  .app.wa:hover .ico{background:#25d366;box-shadow:0 10px 24px -10px #25d366}
+  .app.tel:hover .ico,.app.mail:hover .ico{background:var(--grad);box-shadow:0 10px 24px -10px var(--purple)}
+  @media (max-width:480px){.apps{gap:8px}.app .ico{border-radius:14px}.app small{font-size:.62rem}}
+  form{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:block;font-size:.8rem;color:var(--muted);margin:18px 0 8px;letter-spacing:.05em}
+  input,select,textarea{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--text);font:inherit;font-size:.95rem;transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--purple)}
+  textarea{min-height:130px;resize:vertical}
+  form .btn{width:100%;margin-top:26px}
+
+  footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+
+  /* RESPONSIVE */
+  @media (max-width:960px){
+    .hero .wrap,.contact{grid-template-columns:1fr}
+    .hero-img{max-width:440px}
+    .services,.tiers{grid-template-columns:1fr}
+    .formats{grid-template-columns:1fr 1fr}
+    .service.featured-wide{grid-column:auto}
+    .tiers{max-width:480px;margin:0 auto}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+    .steps{grid-template-columns:1fr 1fr;row-gap:20px}
+    nav ul{
+      position:absolute;top:calc(100% + 10px);right:16px;width:min(300px,calc(100% - 32px));
+      flex-direction:column;align-items:stretch;gap:2px;padding:10px;
+      background:rgba(22,17,31,.96);backdrop-filter:blur(18px);
+      border:1px solid var(--line);border-radius:20px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(139,92,246,.08),0 20px 60px -30px rgba(124,58,237,.6);
+      opacity:0;visibility:hidden;transform:translateY(-10px) scale(.97);transform-origin:top right;
+      transition:opacity .25s,transform .25s,visibility .25s;
+    }
+    nav ul.open{opacity:1;visibility:visible;transform:none}
+    nav ul li{opacity:0;transform:translateX(8px);transition:opacity .3s,transform .3s}
+    nav ul.open li{opacity:1;transform:none}
+    nav ul.open li:nth-child(2){transition-delay:.04s}
+    nav ul.open li:nth-child(3){transition-delay:.08s}
+    nav ul.open li:nth-child(4){transition-delay:.12s}
+    nav ul.open li:nth-child(5){transition-delay:.16s}
+    nav ul.open li:nth-child(6){transition-delay:.2s}
+    nav ul.open li:nth-child(7){transition-delay:.24s}
+    nav ul a{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-radius:12px;font-size:1rem;color:var(--text);transition:background .2s,color .2s}
+    nav ul a::after{content:"→";color:var(--muted);font-size:.9rem;transition:transform .2s,color .2s}
+    nav ul a:hover{background:rgba(139,92,246,.12);color:var(--purple2)}
+    nav ul a:hover::after{transform:translateX(3px);color:var(--purple2)}
+    nav ul a.cta{justify-content:center;margin-top:8px;padding:14px;font-weight:600}
+    nav ul a.cta::after{display:none}
+    nav ul a.cta:hover{color:#fff;background:var(--grad);filter:brightness(1.1)}
+    .burger{display:block}
+    section{padding:90px 0}
+  }
+  @media (max-width:540px){
+    .gallery{grid-template-columns:1fr}
+    .g.wide{grid-column:auto}
+    .steps,.row,.formats{grid-template-columns:1fr}
+    .stats{gap:5px}
+    .stats li{font-size:.68rem;padding:5px 9px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo"><img src="slike/logo.png" alt="Sarmagedon Karikature"></a>    <div class="nav-right">
+      <ul>
+        <li><a href="#usluge">Usluge</a></li>
+        <li><a href="#patike">Custom patike</a></li>
+        <li><a href="#karikature">Karikature</a></li>
+        <li><a href="#" id="open-gal">Galerija</a></li>
+        <li><a href="#proces">Proces</a></li>
+        <li><a href="#utisci">Utisci</a></li>
+        <li><a href="#kontakt" class="cta">Kontakt</a></li>
+      </ul>
+      <button class="cart-btn" id="cart-btn" aria-label="Korpa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V6a3 3 0 016 0v1"/></svg>
+        <span class="cart-badge" id="cart-badge" hidden>0</span>
+      </button>
+      <button class="burger" aria-label="Meni" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <ul class="stats"><li><b>100%</b> ručni rad</li><li><b>3</b> nivoa patika</li><li><b>7–14</b> dana izrade</li></ul>
+      <h1 class="brand" aria-label="Sarmagedon karikature">
+        <span class="brand-main" aria-hidden="true">Sarmagedon</span>
+        <span class="brand-sub" aria-hidden="true">k a r i k a t u r e</span>
+      </h1>
+      <p class="slogan">Budi unikatan/na. <span class="grad-text">Ili pokloni unikat.</span></p>
+      <p>Custom patike i karikature po fotografiji, napravljene da ostanu za uspomenu. Sve je ručno rađeno, po tvojoj ideji i u jednom primerku.</p>
+      <div class="ctas">
+        <a href="#patike" class="btn btn-primary">Pogledaj pakete</a>
+        <a href="#karikature" class="btn btn-ghost">Karikature</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="slike/hero.jpg" alt="Ručno oslikane custom patike sa portretom, Sarmagedon">
+      <div class="badge">Novi radovi svake nedelje · <b>@sarmagedon</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- USLUGE -->
+<section id="usluge">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Ponuda</span>
+      <h2>Usluge</h2>
+      <p>Od ideje do gotovog komada: svaki rad nastaje ručno, unikatan je i izrađen da traje.</p>
+    </div>
+    <div class="services">
+      <div class="service main">
+        <span class="num">01 · Glavna usluga</span>
+        <h3>Custom patike</h3>
+        <p>Oslikavanje patika profesionalnim bojama za kožu i tekstil, sa zaštitnim lakom. Tri nivoa složenosti: Low, Mid i High.</p>
+        <a href="#patike" class="more">Pogledaj pakete →</a>
+      </div>
+      <div class="service featured-wide">
+        <span class="num">02 · Gde je sve počelo</span>
+        <h3>Karikature u ramu</h3>
+        <p>Karikature po fotografiji, za jednu osobu, par, porodicu ili kolektiv. Lik, karakter i humor u jednom crtežu, od A4 do A1 formata, do 5 osoba na crtežu. Idealno za rođendane, venčanja, penzije i poslovne poklone.</p>
+        <a href="#karikature" class="more">Pogledaj formate →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKETI -->
+<section id="patike">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Custom patike</span>
+      <h2>Izaberi nivo</h2>
+      <p>Cena zavisi od količine detalja i površine koja se oslikava. Patike možeš doneti svoje ili ih nabavljam ja (po dogovoru).</p>
+    </div>
+
+    <div class="tiers">
+      <!-- LOW -->
+      <article class="tier">
+        <div class="img">
+          <div class="main"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Low radovi</div></div>
+          <span class="level">LOW</span>
+        </div>
+        <!-- GALERIJA LOW: u svaki .t ubaci <img src="slike/low-1.jpg" alt="Low patike"> umesto <div class="ph"> -->
+        <div class="thumbs five">
+          <div class="t active"><img src="slike/low-1.jpg" alt="Low patike, broj 33, krila i koordinate"></div>
+          <div class="t"><img src="slike/low-2.jpg" alt="Low patike, broj 33 i krila, drugi ugao"></div>
+          <div class="t"><img src="slike/low-3.jpg" alt="Low patike, broj 33 na petama"></div>
+          <div class="t"><img src="slike/low-4.jpg" alt="Low patike, Be Legendary natpis i krila"></div>
+          <div class="t"><img src="slike/low-5.jpg" alt="Low patike, Be Legendary, pogled sa strane"></div>
+        </div>
+        <div class="body">
+          <h3>Low</h3>
+          <p class="desc">Jednostavan, čist dizajn za suptilan detalj.</p>
+          <ul>
+            <li>Natpis, logo ili oba</li>
+            <li>Bez pozadine</li>
+            <li>Jedna strana patike / peta</li>
+            <li>Zaštitni lak</li>
+          </ul>
+          <div class="price">
+            <small>Cena</small>
+            <strong>80–120</strong><span>€</span>
+          </div>
+          <button class="btn btn-ghost add-btn" data-tip="patike" data-opcija="Low">Dodaj Low u korpu</button>
+        </div>
+      </article>
+
+      <!-- MID -->
+      <article class="tier featured">
+        <div class="img">
+          <div class="main"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Mid radovi</div></div>
+          <span class="level">MID · NAJTRAŽENIJE</span>
+        </div>
+        <!-- GALERIJA MID: u svaki .t ubaci <img src="slike/mid-1.jpg" alt="Mid patike"> umesto <div class="ph"> -->
+        <div class="thumbs six">
+          <div class="t active"><img src="slike/mid-1.jpg" alt="Mid patike, crveni anime motiv, bočno"></div>
+          <div class="t"><img src="slike/mid-2.jpg" alt="Mid patike, anime motiv, pogled na pete"></div>
+          <div class="t"><img src="slike/mid-3.jpg" alt="Mid patike, motiv feniksa u plamenu"></div>
+          <div class="t"><img src="slike/mid-4.jpg" alt="Mid patike, feniks, drugi ugao"></div>
+          <div class="t"><img src="slike/mid-5.jpg" alt="Mid patike, anime likovi, pogled odozgo"></div>
+          <div class="t"><img src="slike/mid-6.jpg" alt="Mid patike, anime likovi na peti"></div>
+        </div>
+        <div class="body">
+          <h3>Mid</h3>
+          <p class="desc">Pun dizajn ili likovi bez pozadine, sa više detalja i boja.</p>
+          <ul>
+            <li>Motiv po tvojoj ideji</li>
+            <li>Više boja i senčenje</li>
+            <li>Obe strane patike</li>
+            <li>Skica pre početka rada</li>
+            <li>Zaštitni lak</li>
+          </ul>
+          <div class="price">
+            <small>Cena</small>
+            <strong>130–180</strong><span>€</span>
+          </div>
+          <button class="btn btn-primary add-btn" data-tip="patike" data-opcija="Mid">Dodaj Mid u korpu</button>
+        </div>
+      </article>
+
+      <!-- HIGH -->
+      <article class="tier">
+        <div class="img">
+          <div class="main"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>High radovi</div></div>
+          <span class="level">HIGH</span>
+        </div>
+        <!-- GALERIJA HIGH: u svaki .t ubaci <img src="slike/high-1.jpg" alt="High patike"> umesto <div class="ph"> -->
+        <div class="thumbs ten">
+          <div class="t active"><img src="slike/high-1.jpg" alt="High patike, portret košarkaša, peta"></div>
+          <div class="t"><img src="slike/high-2.jpg" alt="High patike, Killer Crossover motiv"></div>
+          <div class="t"><img src="slike/high-3.jpg" alt="High patike, gavran i broj 9"></div>
+          <div class="t"><img src="slike/high-4.jpg" alt="High patike, grb KK Partizan"></div>
+          <div class="t"><img src="slike/high-5.jpg" alt="High patike, grb KK Partizan izbliza"></div>
+          <div class="t"><img src="slike/high-6.jpg" alt="High patike, plavi borac sa munjama"></div>
+          <div class="t"><img src="slike/high-7.jpg" alt="High patike, plavi borac, pogled sa strane"></div>
+          <div class="t"><img src="slike/high-8.jpg" alt="High patike, Joker i Why so serious, na terenu"></div>
+          <div class="t"><img src="slike/high-9.jpg" alt="High patike, Betmen motiv"></div>
+          <div class="t"><img src="slike/high-10.jpg" alt="High patike, Joker motiv"></div>
+          <div class="t"><img src="slike/high-11.jpg" alt="High patike, crtani likovi u šarenom svemiru, pogled odozgo"></div>
+        </div>
+        <div class="body">
+          <h3>High</h3>
+          <p class="desc">Potpuna transformacija, umetničko delo na nogama.</p>
+          <ul>
+            <li>Oslikana cela patika</li>
+            <li>Portreti, kompleksne scene</li>
+            <li>Neograničen broj boja</li>
+            <li>Personalizovano pakovanje</li>
+            <li>Prioritetna izrada</li>
+          </ul>
+          <div class="price">
+            <small>Cena</small>
+            <strong>200–300</strong><span>€</span>
+          </div>
+          <button class="btn btn-ghost add-btn" data-tip="patike" data-opcija="High">Dodaj High u korpu</button>
+        </div>
+      </article>
+    </div>
+    <p class="note">Cene su za oslikavanje tvojih patika. Za nešto van paketa javi ideju za ponudu.</p>
+  </div>
+</section>
+
+<!-- KARIKATURE -->
+<section id="karikature">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Karikature</span>
+      <h2>Izaberi format</h2>
+      <p>Karikatura po tvojoj fotografiji, ručno crtana. Izaberi format, opiši šta želiš i pošalji fotografije osoba koje se crtaju.</p>
+    </div>
+
+    <div class="formats">
+      <!-- CENE KARIKATURA: menjaju se ovde I u JS konstanti PROIZVODI na dnu fajla -->
+      <article class="fmt">
+        <div class="paper-box"><div class="paper" style="width:28%"><span>A4</span></div></div>
+        <div class="body">
+          <h3>A4</h3>
+          <p class="dim">21 × 29,7 cm</p>
+          <ul class="fmt-info"><li class="yes">U ramu</li><li>Do 5 osoba na crtežu</li></ul>
+          <div class="price"><small>Cena</small><strong>6.000</strong><span>RSD</span></div>
+          <button class="btn btn-ghost add-btn" data-tip="karikatura" data-opcija="A4">Dodaj A4 u korpu</button>
+        </div>
+      </article>
+      <article class="fmt">
+        <div class="paper-box"><div class="paper" style="width:40%"><span>A3</span></div></div>
+        <div class="body">
+          <h3>A3</h3>
+          <p class="dim">29,7 × 42 cm</p>
+          <ul class="fmt-info"><li class="yes">U ramu</li><li>Do 5 osoba na crtežu</li></ul>
+          <div class="price"><small>Cena</small><strong>7.000</strong><span>RSD</span></div>
+          <button class="btn btn-primary add-btn" data-tip="karikatura" data-opcija="A3">Dodaj A3 u korpu</button>
+        </div>
+      </article>
+      <article class="fmt">
+        <div class="paper-box"><div class="paper" style="width:56%"><span>A2</span></div></div>
+        <div class="body">
+          <h3>A2</h3>
+          <p class="dim">42 × 59,4 cm</p>
+          <ul class="fmt-info"><li class="no">Bez rama</li><li>Do 5 osoba na crtežu</li></ul>
+          <div class="price"><small>Cena</small><strong>8.500</strong><span>RSD</span></div>
+          <button class="btn btn-ghost add-btn" data-tip="karikatura" data-opcija="A2">Dodaj A2 u korpu</button>
+        </div>
+      </article>
+      <article class="fmt">
+        <div class="paper-box"><div class="paper" style="width:78%"><span>A1</span></div></div>
+        <div class="body">
+          <h3>A1</h3>
+          <p class="dim">59,4 × 84,1 cm</p>
+          <ul class="fmt-info"><li class="no">Bez rama</li><li>Do 5 osoba na crtežu</li></ul>
+          <div class="price"><small>Cena</small><strong>10.000</strong><span>RSD</span></div>
+          <button class="btn btn-ghost add-btn" data-tip="karikatura" data-opcija="A1">Dodaj A1 u korpu</button>
+        </div>
+      </article>
+    </div>
+    <p class="note">Sve cene važe za crtež sa do 5 osoba. Za više osoba javi se za ponudu.</p>
+  </div>
+</section>
+
+<!-- GALERIJA -->
+<section id="galerija">
+  <div class="wrap">
+    <div class="gal-top">
+      <div class="head">
+        <span class="eyebrow">Galerija</span>
+        <h2>Karikature</h2>
+        <p>Izbor urađenih karikatura, svaka ručno crtana po fotografiji. Klikni na sliku za uvećanje.</p>
+      </div>
+    </div>
+
+    <!--
+      DODAVANJE SLIKA:
+      Napravi folder "slike" pored ovog fajla i u svaki .g umesto <div class="ph">...</div> ubaci:
+      <img src="slike/naziv.jpg" alt="Opis rada">
+      data-c = "karikature"
+      klasa "tall" = visoka slika, "wide" = široka slika
+      (patike imaju svoje galerije u Low / Mid / High paketima)
+    -->
+    <div class="gallery">
+      <div class="g tall" data-c="karikature"><img src="slike/karikatura-1.jpg" alt="Karikatura košarkaša odštampana na majici" loading="lazy"><div class="cap">Karikatura na majici</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-2.webp" alt="Karikatura para u dresovima Lakersa" loading="lazy"><div class="cap">Karikatura para</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-3.webp" alt="Karikatura košarkaša u oklopu, Welcome" loading="lazy"><div class="cap">Dobrodošlica za igrača</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-4.webp" alt="Karikatura dva košarkaša kao filmski poster, Les Visiteurs" loading="lazy"><div class="cap">Filmski poster</div></div>
+      <div class="g wide" data-c="karikature"><img src="slike/karikatura-6.webp" alt="Karikatura trenera sa maskom, La Cassa de Partizan" loading="lazy"><div class="cap">Karikatura po temi serije</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-5.webp" alt="Grupna karikatura tri košarkaša" loading="lazy"><div class="cap">Grupna karikatura</div></div>
+      <div class="g wide" data-c="karikature"><img src="slike/karikatura-7.jpg" alt="Karikatura u ramu za rođendan, uručena slavljeniku" loading="lazy"><div class="cap">Karikatura u ramu za rođendan</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-8.jpg" alt="Karikatura odbojkaša u ramu, uručena reprezentativcu" loading="lazy"><div class="cap">Karikatura u ramu</div></div>
+      <div class="g" data-c="karikature"><img src="slike/karikatura-9.webp" alt="Karikatura žene sa loptom i peharom na stadionu" loading="lazy"><div class="cap">Karikatura za poklon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CELA GALERIJA: puni se automatski slikama iz paketa patika i iz galerije karikatura -->
+<div class="fg" id="fg" role="dialog" aria-modal="true" aria-label="Galerija">
+  <div class="fg-head">
+    <div class="wrap">
+      <h2>Galerija<small id="fg-count"></small></h2>
+      <button class="om-close" type="button" id="fg-close" aria-label="Zatvori">×</button>
+    </div>
+    <div class="wrap"><div class="filters" id="fg-filters"></div></div>
+  </div>
+  <div class="fg-body"><div class="wrap"><div class="fg-grid" id="fg-grid"></div></div></div>
+</div>
+
+<!-- PROZOR: DODAVANJE STAVKE U KORPU -->
+<div class="om" id="im" role="dialog" aria-modal="true" aria-labelledby="im-title">
+  <div class="om-box">
+    <div class="om-head">
+      <h3 id="im-title">Dodaj u korpu</h3>
+      <button class="om-close" type="button" id="im-close" aria-label="Zatvori">×</button>
+    </div>
+    <form id="im-form" novalidate>
+      <div id="im-opcije-wrap">
+        <h4 id="im-opcije-h">Izaberi</h4>
+        <div class="fmt-pick" id="im-opcije"></div>
+      </div>
+      <div class="row">
+        <div id="im-model-wrap"><label for="im-model">Model i broj patika</label><input id="im-model" name="model" placeholder="npr. Nike Air Force 1, br. 43"></div>
+        <div id="im-osobe-wrap">
+          <label for="im-osobe">Broj osoba na crtežu</label>
+          <select id="im-osobe" name="osobe"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+      </div>
+
+      <h4 id="im-slike-h">Fotografije</h4>
+      <div class="drop" id="im-drop" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 16V4m0 0l-4 4m4-4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+        <p><b>Klikni</b> ili prevuci fotografije ovde</p>
+        <small id="im-slike-hint"></small>
+        <input type="file" id="im-files" accept="image/*" multiple hidden>
+      </div>
+      <div class="previews" id="im-previews"></div>
+
+      <h4>Opis</h4>
+      <textarea id="im-opis" name="opis"></textarea>
+
+      <div class="om-sum">
+        <div><small id="im-sum-label"></small><strong id="im-sum-price"></strong></div>
+        <button class="btn btn-primary" type="submit" id="im-submit">Dodaj u korpu</button>
+      </div>
+      <p class="om-err" id="im-err"></p>
+    </form>
+  </div>
+</div>
+
+<!-- KORPA -->
+<div class="cart-ov" id="cart-ov"></div>
+<aside class="cart" id="cart" aria-label="Korpa">
+  <div class="cart-head">
+    <h3>Korpa<span id="cart-n"></span></h3>
+    <button class="om-close" type="button" id="cart-close" aria-label="Zatvori">×</button>
+  </div>
+  <div class="cart-steps"><span>1. Korpa</span><span>2. Podaci</span><span>3. Gotovo</span></div>
+
+  <div class="cart-body" id="cart-body">
+    <!-- korak 1: stavke -->
+    <div id="cart-step1">
+      <div id="cart-list"></div>
+      <div class="cart-empty" id="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V6a3 3 0 016 0v1"/></svg>
+        <h4>Korpa je prazna</h4>
+        <p>Izaberi nivo patika ili format karikature i dodaj ga u korpu.</p>
+        <div class="btns">
+          <a href="#patike" class="btn btn-primary close-cart">Custom patike</a>
+          <a href="#karikature" class="btn btn-ghost close-cart">Karikature</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- korak 2: podaci kupca -->
+    <form id="cart-step2" novalidate>
+      <h4>Kontakt</h4>
+      <div class="row">
+        <div><label for="c-ime">Ime i prezime *</label><input id="c-ime" name="ime" autocomplete="name"></div>
+        <div><label for="c-tel">Telefon *</label><input id="c-tel" name="telefon" type="tel" autocomplete="tel"></div>
+      </div>
+      <label for="c-email">Email</label>
+      <input id="c-email" name="email" type="email" autocomplete="email">
+
+      <h4>Isporuka</h4>
+      <div class="ship">
+        <label><input type="radio" name="isporuka" value="Kurirska služba" checked><div class="opt">Kurirska služba</div></label>
+        <label><input type="radio" name="isporuka" value="Lično preuzimanje"><div class="opt">Lično preuzimanje</div></label>
+      </div>
+      <div class="row">
+        <div><label for="c-grad">Grad</label><input id="c-grad" name="grad" autocomplete="address-level2"></div>
+        <div><label for="c-pb">Poštanski broj</label><input id="c-pb" name="postanski_broj" autocomplete="postal-code"></div>
+      </div>
+      <label for="c-adresa">Ulica i broj</label>
+      <input id="c-adresa" name="adresa" autocomplete="street-address">
+
+      <label for="c-nap">Napomena</label>
+      <textarea id="c-nap" name="napomena" placeholder="Rok, poklon pakovanje, bilo šta važno..."></textarea>
+    </form>
+
+    <!-- korak 3: potvrda -->
+    <div class="om-done" id="cart-step3">
+      <div class="ok">✓</div>
+      <h3>Porudžbina je primljena!</h3>
+      <div class="order-no" id="cart-order-no"></div>
+      <p id="cart-done-text"></p>
+      <button class="btn btn-ghost" type="button" id="cart-done-close">Nazad na sajt</button>
+    </div>
+  </div>
+
+  <div class="cart-foot" id="cart-foot">
+    <div id="cart-totals"></div>
+    <p class="hint">Plaćanje pouzećem ili po dogovoru. Konačnu cenu potvrđujem pre početka rada.</p>
+    <p class="om-err" id="cart-err"></p>
+    <button class="btn btn-primary" type="button" id="cart-next">Nastavi na podatke →</button>
+    <button class="btn btn-ghost" type="button" id="cart-back">← Nazad na korpu</button>
+  </div>
+</aside>
+
+<div class="lb" id="lb"><button aria-label="Zatvori">×</button><img alt=""></div>
+
+<!-- PROCES -->
+<section id="proces">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Proces</span>
+      <h2>Od ideje do gotovog komada</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><b class="grad-text">Prvi korak</b><h3>Upit</h3><p>Pošalji ideju, fotografije i željeni rok preko forme ili Instagrama.</p></div>
+      <div class="step"><b class="grad-text">Drugi korak</b><h3>Skica i ponuda</h3><p>Dobijaš skicu i tačnu cenu. Rad počinje tek kad sve odobriš.</p></div>
+      <div class="step"><b class="grad-text">Treći korak</b><h3>Izrada</h3><p>Ručno oslikavanje, uz fotografije napretka tokom rada.</p></div>
+      <div class="step"><b class="grad-text">Četvrti korak</b><h3>Isporuka</h3><p>Lično preuzimanje ili slanje kurirskom službom.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- UTISCI / KOMENTARI -->
+<section id="utisci">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Utisci</span>
+      <h2>Šta kažu <span class="grad-text">kupci</span></h2>
+      <p>Iskustva ljudi koji nose ili poklanjaju Sarmagedon unikat.</p>
+    </div>
+    <div class="reviews-wrap">
+      <!--
+        KOMENTARI: komentari stižu na email preko forme desno.
+        Kad odobriš neki, kopiraj jedan .review blok, upiši ime, šta je naručio, ocenu (broj ★) i tekst.
+        Primeri ispod su samo okvir, zameni ih pravim komentarima ili ih obriši.
+      -->
+      <div class="reviews" id="reviews">
+        <article class="review">
+          <div class="stars" aria-label="Ocena 5 od 5">★★★★★</div>
+          <p>Ovde ide komentar kupca. Na primer šta je naručio, kako je izgledalo kad je stiglo i kako su reagovali oni kojima je poklon.</p>
+          <div class="who"><span class="av">I</span><div><b>Ime kupca</b><small>Custom patike · High</small></div></div>
+        </article>
+        <article class="review">
+          <div class="stars" aria-label="Ocena 5 od 5">★★★★★</div>
+          <p>Ovde ide komentar kupca o karikaturi: povod, format i utisak.</p>
+          <div class="who"><span class="av">I</span><div><b>Ime kupca</b><small>Karikatura · A3</small></div></div>
+        </article>
+        <article class="review">
+          <div class="stars" aria-label="Ocena 5 od 5">★★★★★</div>
+          <p>Ovde ide komentar kupca. Kratko i iskreno je najbolje.</p>
+          <div class="who"><span class="av">I</span><div><b>Ime kupca</b><small>Custom patike · Mid</small></div></div>
+        </article>
+      </div>
+
+      <form id="review-form" class="review-form" novalidate>
+        <h3>Ostavi komentar</h3>
+        <p class="sub">Naručio si nešto? Napiši kako ti se svidelo. Komentar se objavljuje nakon odobrenja.</p>
+        <label>Ocena</label>
+        <div class="rate" role="radiogroup" aria-label="Ocena">
+          <input type="radio" id="r5" name="ocena" value="5" checked><label for="r5" title="5">★</label>
+          <input type="radio" id="r4" name="ocena" value="4"><label for="r4" title="4">★</label>
+          <input type="radio" id="r3" name="ocena" value="3"><label for="r3" title="3">★</label>
+          <input type="radio" id="r2" name="ocena" value="2"><label for="r2" title="2">★</label>
+          <input type="radio" id="r1" name="ocena" value="1"><label for="r1" title="1">★</label>
+        </div>
+        <div class="row">
+          <div><label for="rv-ime">Ime</label><input id="rv-ime" name="ime" autocomplete="given-name"></div>
+          <div>
+            <label for="rv-sta">Šta si naručio</label>
+            <select id="rv-sta" name="proizvod">
+              <option>Patike Low</option>
+              <option>Patike Mid</option>
+              <option>Patike High</option>
+              <option>Karikatura</option>
+            </select>
+          </div>
+        </div>
+        <label for="rv-tekst">Komentar</label>
+        <textarea id="rv-tekst" name="komentar" placeholder="Kako ti se svideo rad?"></textarea>
+        <p class="om-err" id="rv-err"></p>
+        <button class="btn btn-primary" type="submit">Pošalji komentar</button>
+        <p class="rv-ok" id="rv-ok" hidden>Hvala na komentaru! Pojaviće se na sajtu nakon odobrenja.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="wrap contact">
+    <div>
+      <div class="head">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Naruči svoj <span class="grad-text">unikat</span></h2>
+        <p>Javi se sa idejom, odgovaram u roku od 24h sa predlogom i cenom.</p>
+      </div>
+      <!-- KONTAKT IKONICE: zameni linkove i broj (+381600000000) pravim podacima -->
+      <div class="apps">
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="app ig" aria-label="Instagram">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></span>
+          <small>Instagram</small>
+        </a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener" class="app fb" aria-label="Facebook">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h-2.5A4.5 4.5 0 009 7.5V10H6.5v3.5H9V21h3.5v-7.5H15l.7-3.5h-3.2V8a1 1 0 011-1H16z"/></svg></span>
+          <small>Facebook</small>
+        </a>
+        <a href="viber://chat?number=%2B381600000000" class="app vb" aria-label="Viber">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c5.5 0 8.5 2.4 8.5 8s-3 8-8.5 8c-.9 0-1.7-.1-2.4-.2L6 21v-3.3C4.2 16.4 3.5 14 3.5 10.5c0-5.6 3-8 8.5-8z"/><path d="M9.2 7.5c.3-.3.8-.3 1 0l.9 1.2c.2.3.2.7-.1 1l-.5.5c.4 1 1.2 1.8 2.2 2.2l.5-.5c.3-.3.7-.3 1-.1l1.2.9c.3.2.3.7 0 1l-.6.6c-.6.6-1.6.7-2.4.2a9 9 0 01-3.6-3.6c-.5-.8-.4-1.8.2-2.4z"/></svg></span>
+          <small>Viber</small>
+        </a>
+        <a href="https://wa.me/381600000000" target="_blank" rel="noopener" class="app wa" aria-label="WhatsApp">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-3.9-.9z"/><path d="M9.2 8c.3-.3.8-.3 1 0l.8 1.1c.2.3.2.7-.1 1l-.4.4c.4.9 1.1 1.6 2 2l.4-.4c.3-.3.7-.3 1-.1l1.1.8c.3.2.3.7 0 1l-.5.5c-.6.6-1.5.7-2.2.2a8 8 0 01-3.3-3.3c-.4-.7-.3-1.6.2-2.2z"/></svg></span>
+          <small>WhatsApp</small>
+        </a>
+        <a href="tel:+381600000000" class="app tel" aria-label="Pozovi telefonom">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.5v3a2 2 0 01-2.2 2A18.5 18.5 0 012.5 5.2 2 2 0 014.5 3h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.6a2 2 0 01-.5 2.1L8.4 10.7a15 15 0 006 6l1.3-1.3a2 2 0 012.1-.5c.8.3 1.7.6 2.6.7a2 2 0 011.7 2z"/></svg></span>
+          <small>Telefon</small>
+        </a>
+        <a href="mailto:kontakt@primer.rs" class="app mail" aria-label="Email">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span>
+          <small>Email</small>
+        </a>
+      </div>
+    </div>
+    <form id="order">
+      <div class="row">
+        <div><label for="ime">Ime i prezime</label><input id="ime" name="ime" required></div>
+        <div><label for="tel">Telefon ili email</label><input id="tel" name="tel" required></div>
+      </div>
+      <label for="vrsta">Šta želiš</label>
+      <select id="vrsta" name="vrsta">
+        <option>Custom patike — Low</option>
+        <option>Custom patike — Mid</option>
+        <option>Custom patike — High</option>
+        <option>Karikatura u ramu — A4</option>
+        <option>Karikatura u ramu — A3</option>
+        <option>Karikatura u ramu — A2</option>
+        <option>Karikatura u ramu — A1</option>
+        <option>Nešto drugo</option>
+      </select>
+      <label for="poruka">Opis ideje</label>
+      <textarea id="poruka" name="poruka" placeholder="Model i broj patika, motiv, boje, rok..."></textarea>
+      <button class="btn btn-primary" type="submit">Pošalji upit</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#" class="logo"><img src="slike/logo.png" alt="Sarmagedon Karikature"></a>
+    <span>© <span id="y"></span> Karikature Sarmagedon</span>
+    <span>Custom patike · Karikature</span>
+  </div>
+</footer>
+
+<script>
+  // Email na koji stižu upiti iz forme (promeni)
+  const EMAIL = 'kontakt@primer.rs';
+
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Mobilni meni
+  const menu = document.querySelector('nav ul');
+  const burger = document.querySelector('.burger');
+  const setMenu = open => {
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  };
+  burger.onclick = e => { e.stopPropagation(); setMenu(!menu.classList.contains('open')); };
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('click', e => { if (!menu.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  // Dugme paketa automatski bira opciju u formi
+  document.querySelectorAll('[data-paket]').forEach(b => b.addEventListener('click', () => {
+    document.getElementById('vrsta').value = b.dataset.paket;
+  }));
+
+  // Filter galerije
+  document.querySelectorAll('.filters button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('.filters button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.g').forEach(g =>
+      g.classList.toggle('hide', b.dataset.f !== 'sve' && g.dataset.c !== b.dataset.f));
+  });
+
+  // Lightbox (radi kad u galeriji postoje slike)
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.g').forEach(g => g.onclick = () => {
+    const img = g.querySelector('img');
+    if (!img) return;
+    lbImg.src = img.src; lbImg.alt = img.alt;
+    lb.classList.add('open');
+  });
+  lb.onclick = e => { if (e.target !== lbImg) lb.classList.remove('open'); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  // Mini galerije u Low / Mid / High: klik na sličicu menja glavnu sliku
+  document.querySelectorAll('.tier').forEach(tier => {
+    const main = tier.querySelector('.main');
+    const thumbs = tier.querySelectorAll('.thumbs .t');
+    const show = t => {
+      const img = t.querySelector('img');
+      thumbs.forEach(x => x.classList.toggle('active', x === t));
+      if (img) main.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+    };
+    thumbs.forEach(t => t.onclick = () => show(t));
+    if (thumbs[0] && thumbs[0].querySelector('img')) show(thumbs[0]);
+    main.onclick = () => {
+      const img = main.querySelector('img');
+      if (!img) return;
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('open');
+    };
+  });
+
+  /* ===== CELA GALERIJA ===== */
+  const fg = document.getElementById('fg');
+  const fgGrid = document.getElementById('fg-grid');
+  const fgFilters = document.getElementById('fg-filters');
+  const KATEGORIJE = { patike: 'Patike', karikature: 'Karikature' };
+
+  const sakupiRadove = () => {
+    const radovi = [];
+    // patike iz Low / Mid / High galerija
+    document.querySelectorAll('.tier').forEach(tier => {
+      const nivo = tier.querySelector('h3').textContent.trim();
+      tier.querySelectorAll('.thumbs .t').forEach(t =>
+        radovi.push({ c: 'patike', tag: `Patike · ${nivo}`, img: t.querySelector('img') }));
+    });
+    // galerija karikatura
+    document.querySelectorAll('.gallery .g').forEach(g =>
+      radovi.push({ c: g.dataset.c, tag: g.querySelector('.cap')?.textContent || KATEGORIJE[g.dataset.c], img: g.querySelector('img') }));
+    return radovi;
+  };
+
+  const filtrirajFg = f => {
+    fgFilters.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.f === f));
+    let n = 0;
+    fgGrid.querySelectorAll('.fg-item').forEach(i => {
+      const vidi = f === 'sve' || i.dataset.c === f;
+      i.classList.toggle('hide', !vidi); if (vidi) n++;
+    });
+    const j = n % 10, d = n % 100;
+    const rec = j === 1 && d !== 11 ? 'rad' : (j >= 2 && j <= 4 && (d < 12 || d > 14)) ? 'rada' : 'radova';
+    document.getElementById('fg-count').textContent = `${n} ${rec}`;
+  };
+
+  const otvoriGaleriju = () => {
+    const radovi = sakupiRadove();
+    fgFilters.innerHTML = '<button data-f="sve">Sve</button>' +
+      Object.entries(KATEGORIJE).filter(([k]) => radovi.some(r => r.c === k))
+        .map(([k, v]) => `<button data-f="${k}">${v}</button>`).join('');
+    fgFilters.querySelectorAll('button').forEach(b => b.onclick = () => filtrirajFg(b.dataset.f));
+    fgGrid.innerHTML = '';
+    radovi.forEach(r => {
+      const d = document.createElement('div');
+      d.className = 'fg-item'; d.dataset.c = r.c;
+      d.innerHTML = r.img ? `<img src="${r.img.src}" alt="${r.img.alt}" loading="lazy">` : `<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>`;
+      d.insertAdjacentHTML('beforeend', `<span class="tag">${r.tag}</span>`);
+      if (r.img) d.onclick = () => { lbImg.src = r.img.src; lbImg.alt = r.img.alt; lb.classList.add('open'); };
+      fgGrid.append(d);
+    });
+    filtrirajFg('sve');
+    fg.classList.add('open');
+    fg.querySelector('.fg-body').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  };
+  const zatvoriGaleriju = () => { fg.classList.remove('open'); document.body.style.overflow = ''; };
+
+  document.getElementById('open-gal').addEventListener('click', e => { e.preventDefault(); otvoriGaleriju(); });
+  document.getElementById('fg-close').onclick = zatvoriGaleriju;
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && fg.classList.contains('open') && !lb.classList.contains('open')) zatvoriGaleriju();
+  }, true);
+
+  /* ===================== KORPA ===================== */
+  // Proizvodi i cene. Cene na karticama na sajtu menjaj i ovde.
+  const PROIZVODI = {
+    patike: {
+      naziv: 'Custom patike', opcijeNaslov: 'Nivo',
+      opcije: {
+        Low:  { min: 80,  max: 120, val: '€', info: 'Natpis / logo, bez pozadine' },
+        Mid:  { min: 130, max: 180, val: '€', info: 'Pun dizajn ili likovi bez pozadine' },
+        High: { min: 200, max: 300, val: '€', info: 'Oslikana cela patika' },
+      },
+      slikeNaslov: 'Fotografije patika i inspiracije', slikeHint: 'Tvoje patike, logo, ideja · opciono',
+      opisPh: 'Šta želiš na patikama: motiv, natpis, boje, koja strana...',
+    },
+    karikatura: {
+      naziv: 'Karikatura', opcijeNaslov: 'Format',
+      opcije: {
+        A4: { min: 6000,  max: 6000,  val: 'RSD', info: '21 × 29,7 cm · u ramu' },
+        A3: { min: 7000,  max: 7000,  val: 'RSD', info: '29,7 × 42 cm · u ramu' },
+        A2: { min: 8500,  max: 8500,  val: 'RSD', info: '42 × 59,4 cm · bez rama' },
+        A1: { min: 10000, max: 10000, val: 'RSD', info: '59,4 × 84,1 cm · bez rama' },
+      },
+      osobe: true, slikeObavezne: true,
+      slikeNaslov: 'Fotografije osoba koje se crtaju', slikeHint: 'Jasne fotografije lica, do 5 osoba · obavezno',
+      opisPh: 'Ko je ko na slikama, povod (rođendan, penzija...), hobiji, posao, natpis na crtežu...',
+    },
+  };
+  // Adresa servisa koji prima porudžbine sa slikama (npr. Formspree). Dok je prazno, šalje se preko email aplikacije.
+  const ORDER_ENDPOINT = '';
+  const MAX_SLIKA = 10;
+  const KLJUC = 'sarmagedon-korpa';
+
+  const $ = id => document.getElementById(id);
+  const IKONA = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const broj = n => n.toLocaleString('sr-RS');
+  const mn = (n, a, b, c) => { const j = n % 10, d = n % 100; return j === 1 && d !== 11 ? a : (j >= 2 && j <= 4 && (d < 12 || d > 14)) ? b : c; };
+  const fmtCena = (o, q = 1) => !o ? 'Po dogovoru' : o.min === o.max ? `${broj(o.min * q)} ${o.val}` : `${broj(o.min * q)}–${broj(o.max * q)} ${o.val}`;
+  const opcijaOd = s => PROIZVODI[s.tip]?.opcije?.[s.opcija];
+
+  let korpa = [];
+  try { korpa = (JSON.parse(localStorage.getItem(KLJUC)) || []).filter(s => PROIZVODI[s.tip]); } catch { korpa = []; }
+  const slikeMap = new Map();   // slike žive samo dok je stranica otvorena
+  const sacuvaj = () => { try { localStorage.setItem(KLJUC, JSON.stringify(korpa)); } catch {} };
+
+  const im = $('im'), imForm = $('im-form'), cart = $('cart'), cartOv = $('cart-ov'), cartBtn = $('cart-btn');
+  const zakljucaj = () => { document.body.style.overflow = (im.classList.contains('open') || cart.classList.contains('open') || fg.classList.contains('open')) ? 'hidden' : ''; };
+
+  /* ---------- prozor za stavku ---------- */
+  let imTip = null, imEdit = null, imSlike = [];
+  const imOpcija = () => imForm.querySelector('input[name=opcija]:checked')?.value;
+  const imGreska = t => { $('im-err').textContent = t; $('im-err').style.display = t ? 'block' : 'none'; };
+
+  const imOsvezi = () => {
+    const p = PROIZVODI[imTip], k = imOpcija(), o = p.opcije?.[k];
+    $('im-sum-label').textContent = [p.naziv + (k ? ' ' + k : ''), o?.info].filter(Boolean).join(' · ');
+    $('im-sum-price').textContent = fmtCena(o);
+  };
+  $('im-opcije').addEventListener('change', imOsvezi);
+
+  const imPrikaziSlike = () => {
+    const box = $('im-previews'); box.innerHTML = '';
+    imSlike.forEach((f, i) => {
+      const d = document.createElement('div'); d.className = 'pv';
+      const img = document.createElement('img'); img.src = URL.createObjectURL(f); img.alt = f.name;
+      const x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.title = 'Ukloni';
+      x.onclick = () => { imSlike.splice(i, 1); imPrikaziSlike(); };
+      d.append(img, x); box.append(d);
+    });
+  };
+  const imDodajSlike = files => {
+    for (const f of files) {
+      if (!f.type.startsWith('image/')) continue;
+      if (imSlike.length >= MAX_SLIKA) { imGreska(`Najviše ${MAX_SLIKA} fotografija po stavci.`); break; }
+      imSlike.push(f);
+    }
+    imPrikaziSlike();
+  };
+  const imDrop = $('im-drop'), imFiles = $('im-files');
+  imDrop.onclick = () => imFiles.click();
+  imDrop.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); imFiles.click(); } };
+  imFiles.onchange = () => { imDodajSlike(imFiles.files); imFiles.value = ''; };
+  ['dragenter', 'dragover'].forEach(ev => imDrop.addEventListener(ev, e => { e.preventDefault(); imDrop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => imDrop.addEventListener(ev, e => { e.preventDefault(); imDrop.classList.remove('over'); }));
+  imDrop.addEventListener('drop', e => imDodajSlike(e.dataTransfer.files));
+
+  function otvoriStavku(tip, opcija, editId) {
+    const p = PROIZVODI[tip]; if (!p) return;
+    const s = editId ? korpa.find(x => x.id === editId) : null;
+    imTip = tip; imEdit = s ? s.id : null;
+    imForm.reset(); imGreska('');
+    $('im-title').textContent = (s ? 'Izmeni: ' : '') + p.naziv;
+    $('im-opcije-wrap').hidden = !p.opcije;
+    $('im-opcije').innerHTML = '';
+    if (p.opcije) {
+      $('im-opcije-h').textContent = p.opcijeNaslov;
+      $('im-opcije').innerHTML = Object.entries(p.opcije).map(([k, o]) =>
+        `<label><input type="radio" name="opcija" value="${k}"><div class="opt"><b>${k}</b><span>${o.info}</span><em>${fmtCena(o)}</em></div></label>`).join('');
+      const izbor = s?.opcija || (p.opcije[opcija] ? opcija : Object.keys(p.opcije)[0]);
+      imForm.querySelector(`input[name=opcija][value="${izbor}"]`).checked = true;
+    }
+    $('im-model-wrap').hidden = !p.model;
+    $('im-osobe-wrap').hidden = !p.osobe;
+    $('im-slike-h').textContent = p.slikeNaslov;
+    $('im-slike-hint').textContent = p.slikeHint + ` · najviše ${MAX_SLIKA}`;
+    $('im-opis').placeholder = p.opisPh;
+    if (s) { $('im-model').value = s.model || ''; $('im-osobe').value = s.osobe || '1'; $('im-opis').value = s.opis || ''; }
+    imSlike = s ? [...(slikeMap.get(s.id) || [])] : [];
+    imPrikaziSlike(); imOsvezi();
+    $('im-submit').textContent = s ? 'Sačuvaj izmene' : 'Dodaj u korpu';
+    im.classList.add('open'); im.scrollTop = 0; zakljucaj();
+  }
+  const zatvoriStavku = () => { im.classList.remove('open'); zakljucaj(); };
+  $('im-close').onclick = zatvoriStavku;
+  im.addEventListener('click', e => { if (e.target === im) zatvoriStavku(); });
+
+  imForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const p = PROIZVODI[imTip];
+    const podaci = {
+      tip: imTip,
+      opcija: imOpcija() || null,
+      model: p.model ? $('im-model').value.trim() : '',
+      osobe: p.osobe ? $('im-osobe').value : '',
+      opis: $('im-opis').value.trim(),
+    };
+    if (p.slikeObavezne && !imSlike.length) return imGreska('Dodaj bar jednu fotografiju osobe koja se crta.');
+    if (!p.opcije && !podaci.opis && !imSlike.length) return imGreska('Opiši šta želiš ili dodaj fotografiju, da bih mogao da pripremim ponudu.');
+    let id;
+    if (imEdit) {
+      const s = korpa.find(x => x.id === imEdit); Object.assign(s, podaci); id = s.id;
+    } else {
+      id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      korpa.push({ id, kol: 1, ...podaci });
+    }
+    slikeMap.set(id, imSlike);
+    sacuvaj(); zatvoriStavku(); prikaziKorpu(); otvoriKorpu(1);
+    cartBtn.classList.remove('bump'); void cartBtn.offsetWidth; cartBtn.classList.add('bump');
+  });
+
+  /* ---------- korpa ---------- */
+  let korak = 1;
+  const cartGreska = t => { $('cart-err').textContent = t; $('cart-err').style.display = t ? 'block' : 'none'; };
+
+  function izracunaj() {
+    const sume = {}; let dogovor = 0;
+    korpa.forEach(s => {
+      const o = opcijaOd(s);
+      if (!o) { dogovor += s.kol; return; }
+      const t = sume[o.val] ||= { min: 0, max: 0, val: o.val };
+      t.min += o.min * s.kol; t.max += o.max * s.kol;
+    });
+    return { sume: Object.values(sume), dogovor };
+  }
+
+  function idiNa(k) {
+    korak = k;
+    $('cart-step1').hidden = k !== 1;
+    $('cart-step2').hidden = k !== 2;
+    $('cart-step3').hidden = k !== 3;
+    document.querySelectorAll('.cart-steps span').forEach((s, i) => s.classList.toggle('on', i < k));
+    $('cart-foot').hidden = k === 3 || (k === 1 && !korpa.length);
+    $('cart-next').textContent = k === 1 ? 'Nastavi na podatke →' : 'Pošalji porudžbinu';
+    $('cart-back').hidden = k !== 2;
+    cartGreska('');
+    $('cart-body').scrollTop = 0;
+  }
+
+  function prikaziKorpu() {
+    const n = korpa.reduce((a, s) => a + s.kol, 0);
+    $('cart-badge').textContent = n; $('cart-badge').hidden = !n;
+    $('cart-n').textContent = n ? ` (${n})` : '';
+    $('cart-empty').hidden = korpa.length > 0;
+    $('cart-list').innerHTML = korpa.map(s => {
+      const p = PROIZVODI[s.tip], o = opcijaOd(s), sl = slikeMap.get(s.id) || [];
+      const det = [
+        o?.info,
+        s.model,
+        s.osobe && `${s.osobe} ${mn(+s.osobe, 'osoba', 'osobe', 'osoba')}`,
+        sl.length && `${sl.length} ${mn(sl.length, 'fotografija', 'fotografije', 'fotografija')}`,
+      ].filter(Boolean).map(esc).join(' · ');
+      const opis = s.opis ? `<small class="opis">„${esc(s.opis.length > 90 ? s.opis.slice(0, 90) + '…' : s.opis)}“</small>` : '';
+      const upoz = p.slikeObavezne && !sl.length ? '<small class="warn">⚠ Nedostaju fotografije, klikni „Izmeni”</small>' : '';
+      const slika = sl[0] ? `<img src="${URL.createObjectURL(sl[0])}" alt="">` : IKONA;
+      return `<div class="ci" data-id="${s.id}">
+        <div class="ci-img">${slika}</div>
+        <div>
+          <b>${esc(p.naziv)}${s.opcija ? ' · ' + esc(s.opcija) : ''}</b>
+          <small>${det || 'Bez dodatnih detalja'}</small>${opis}${upoz}
+          <div class="ci-actions">
+            <div class="qty"><button type="button" data-a="minus" aria-label="Manje">−</button><span>${s.kol}</span><button type="button" data-a="plus" aria-label="Više">+</button></div>
+            <button type="button" class="lnk" data-a="edit">Izmeni</button>
+            <button type="button" class="lnk" data-a="del">Ukloni</button>
+          </div>
+        </div>
+        <div class="ci-price">${fmtCena(o, s.kol)}</div>
+      </div>`;
+    }).join('');
+    const { sume, dogovor } = izracunaj();
+    $('cart-totals').innerHTML =
+      sume.map(t => `<div class="tot"><span>Ukupno (${t.val})</span><strong>${fmtCena(t)}</strong></div>`).join('') +
+      (dogovor ? `<div class="tot"><span>Po dogovoru</span><span>${dogovor} ${mn(dogovor, 'stavka', 'stavke', 'stavki')}</span></div>` : '');
+    if (korak === 1) $('cart-foot').hidden = !korpa.length;
+    if (!korpa.length && korak === 2) idiNa(1);
+  }
+
+  $('cart-list').addEventListener('click', e => {
+    const b = e.target.closest('button[data-a]'); if (!b) return;
+    const id = b.closest('.ci').dataset.id, s = korpa.find(x => x.id === id);
+    if (b.dataset.a === 'plus') s.kol = Math.min(s.kol + 1, 10);
+    if (b.dataset.a === 'minus' && s.kol > 1) s.kol--;
+    if (b.dataset.a === 'del') { korpa = korpa.filter(x => x.id !== id); slikeMap.delete(id); }
+    if (b.dataset.a === 'edit') return otvoriStavku(s.tip, s.opcija, s.id);
+    sacuvaj(); prikaziKorpu();
+  });
+
+  function otvoriKorpu(k) {
+    idiNa(k || (korak === 3 ? 1 : korak));
+    cart.classList.add('open'); cartOv.classList.add('open'); zakljucaj();
+  }
+  function zatvoriKorpu() {
+    cart.classList.remove('open'); cartOv.classList.remove('open'); zakljucaj();
+    if (korak === 3) idiNa(1);
+  }
+  cartBtn.onclick = () => otvoriKorpu();
+  $('cart-close').onclick = zatvoriKorpu;
+  $('cart-done-close').onclick = zatvoriKorpu;
+  cartOv.onclick = zatvoriKorpu;
+  document.querySelectorAll('.close-cart').forEach(a => a.addEventListener('click', zatvoriKorpu));
+  $('cart-back').onclick = () => idiNa(1);
+  $('cart-step2').addEventListener('submit', e => { e.preventDefault(); posalji(); });
+
+  $('cart-next').onclick = () => {
+    if (korak === 1) {
+      const fali = korpa.find(s => PROIZVODI[s.tip].slikeObavezne && !(slikeMap.get(s.id) || []).length);
+      if (fali) return cartGreska(`Stavci „${PROIZVODI[fali.tip].naziv} ${fali.opcija || ''}” nedostaju fotografije. Klikni „Izmeni” i dodaj ih.`);
+      return idiNa(2);
+    }
+    if (korak === 2) posalji();
+  };
+
+  async function posalji() {
+    const f = $('cart-step2'), d = new FormData(f);
+    if (!d.get('ime').trim() || !d.get('telefon').trim()) return cartGreska('Upiši ime i telefon.');
+    if (d.get('isporuka') === 'Kurirska služba' && (!d.get('grad').trim() || !d.get('adresa').trim()))
+      return cartGreska('Za slanje kurirskom službom upiši grad i adresu.');
+
+    const datum = new Date();
+    const brojP = 'SG-' + datum.toISOString().slice(2, 10).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000);
+    const { sume, dogovor } = izracunaj();
+    const ukupno = [...sume.map(t => fmtCena(t)), dogovor ? `${dogovor} ${mn(dogovor, 'stavka', 'stavke', 'stavki')} po dogovoru` : ''].filter(Boolean).join(' + ');
+    const stavke = korpa.map((s, i) => {
+      const p = PROIZVODI[s.tip], o = opcijaOd(s), sl = slikeMap.get(s.id) || [];
+      return [
+        `${i + 1}. ${p.naziv}${s.opcija ? ' — ' + s.opcija : ''} × ${s.kol}`,
+        `   Cena: ${fmtCena(o, s.kol)}`,
+        o?.info && `   ${o.info}`,
+        s.model && `   Patike: ${s.model}`,
+        s.osobe && `   Broj osoba: ${s.osobe}`,
+        `   Fotografija: ${sl.length}`,
+        s.opis && `   Opis: ${s.opis}`,
+      ].filter(Boolean).join('\n');
+    }).join('\n\n');
+    const tekst = `PORUDŽBINA ${brojP}\n\n${stavke}\n\nUKUPNO: ${ukupno}\n\n` +
+      `Ime: ${d.get('ime')}\nTelefon: ${d.get('telefon')}\nEmail: ${d.get('email') || '-'}\n` +
+      `Isporuka: ${d.get('isporuka')}\nGrad: ${d.get('grad') || '-'} ${d.get('postanski_broj') || ''}\nAdresa: ${d.get('adresa') || '-'}\n` +
+      `Napomena: ${d.get('napomena') || '-'}`;
+    const ukSlika = korpa.reduce((a, s) => a + (slikeMap.get(s.id) || []).length, 0);
+    const btn = $('cart-next');
+
+    if (ORDER_ENDPOINT) {
+      btn.disabled = true; btn.textContent = 'Šaljem...';
+      d.append('broj_porudzbine', brojP);
+      d.append('porudzbina', tekst);
+      d.append('_subject', `Porudžbina ${brojP} — ${d.get('ime')}`);
+      korpa.forEach((s, i) => (slikeMap.get(s.id) || []).forEach(file => d.append(`stavka${i + 1}_slike`, file, file.name)));
+      try {
+        const r = await fetch(ORDER_ENDPOINT, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+        if (!r.ok) throw new Error();
+      } catch {
+        btn.disabled = false; btn.textContent = 'Pošalji porudžbinu';
+        return cartGreska('Slanje nije uspelo. Pokušaj ponovo ili se javi na Instagramu.');
+      }
+      btn.disabled = false;
+      $('cart-done-text').textContent = 'Javiću ti se uskoro da potvrdimo detalje, skicu i konačnu cenu. Hvala na poverenju!';
+    } else {
+      location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Porudžbina ${brojP} — ${d.get('ime')}`)}&body=${encodeURIComponent(tekst)}`;
+      $('cart-done-text').textContent = 'Otvorena je tvoja email aplikacija sa popunjenom porudžbinom, pa je samo pošalji.' +
+        (ukSlika ? ` Pre slanja dodaj ${ukSlika} ${mn(ukSlika, 'fotografiju', 'fotografije', 'fotografija')} kao prilog.` : '');
+    }
+    $('cart-order-no').textContent = brojP;
+    korpa = []; slikeMap.clear(); sacuvaj(); f.reset();
+    idiNa(3); prikaziKorpu();
+  }
+
+  // Dugmad "Dodaj u korpu" na sajtu
+  document.querySelectorAll('.add-btn').forEach(b => b.addEventListener('click', e => {
+    e.preventDefault(); otvoriStavku(b.dataset.tip, b.dataset.opcija);
+  }));
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (im.classList.contains('open')) zatvoriStavku();
+    else if (cart.classList.contains('open')) zatvoriKorpu();
+  });
+
+  prikaziKorpu(); idiNa(1);
+
+  // Forma -> otvara email sa popunjenim upitom
+  document.getElementById('order').addEventListener('submit', e => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const subject = `Upit: ${d.get('vrsta')} — ${d.get('ime')}`;
+    const body = `Ime: ${d.get('ime')}\nKontakt: ${d.get('tel')}\nVrsta: ${d.get('vrsta')}\n\n${d.get('poruka')}`;
+    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  // Komentari -> stižu na email (ili na ORDER_ENDPOINT) da ih odobriš pre objave
+  const rvForm = document.getElementById('review-form');
+  const rvGreska = t => { $('rv-err').textContent = t; $('rv-err').style.display = t ? 'block' : 'none'; };
+  rvForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const d = new FormData(rvForm);
+    const ime = (d.get('ime') || '').trim(), tekst = (d.get('komentar') || '').trim();
+    if (!ime) return rvGreska('Upiši ime.');
+    if (tekst.length < 5) return rvGreska('Napiši komentar.');
+    rvGreska('');
+    const ocena = d.get('ocena');
+    const subject = `Novi komentar sa sajta — ${ime} (${ocena}★)`;
+    const body = `Ime: ${ime}\nNaručio: ${d.get('proizvod')}\nOcena: ${'★'.repeat(ocena)}${'☆'.repeat(5 - ocena)}\n\n${tekst}`;
+    if (ORDER_ENDPOINT) {
+      try {
+        d.append('_subject', subject);
+        const r = await fetch(ORDER_ENDPOINT, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+        if (!r.ok) throw new Error();
+      } catch { return rvGreska('Slanje nije uspelo. Pokušaj ponovo.'); }
+    } else {
+      location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    rvForm.reset();
+    $('rv-ok').hidden = false;
+  });
+</script>
+</body>
+</html>
